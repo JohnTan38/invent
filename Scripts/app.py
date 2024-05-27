@@ -53,3 +53,6 @@ elif dataUpload is not None:
                 
             st.dataframe(data_new)
             success_df('Data generated successfully!')
+
+st.markdown('''
+            **REORDER** :orange[orange text] :blue-background[highlight text]:cherry_blossom:''')

@@ -40,6 +40,9 @@ def add_used_2(df):
 
     return df
 
+def select_reorder(df):
+    return df[df['STATUS'] == 'REORDER']
+
 title_main('INVENTORY')
 
 dataUpload = st.file_uploader("Upload your xlsx file", type="xlsx")
@@ -52,7 +55,27 @@ elif dataUpload is not None:
         if st.button('Lets get started'):
                 
             st.dataframe(data_new)
+            st.divider()
+            st.dataframe(select_reorder(data_new))
+            reOrder = select_reorder(data_new)['ITEM DESCRIPTION DO'].tolist()
+
+            html_str_order = f"""
+                <p style='background-color:#F0FFFF;
+                color: #483D8B;
+                font-size: 18px;
+                font: bold;
+                border-radius:5px;
+                padding-left: 12px;
+                padding-top: 10px;
+                padding-bottom: 12px;
+                line-height: 18px;
+                border-color: #03396c;
+                text-align: left;'>
+                {reOrder}</style>
+                <br></p>"""
+            st.markdown('''
+                **REORDER** '''+html_str_order, unsafe_allow_html=True)
             success_df('Data generated successfully!')
 
-st.markdown('''
-            **REORDER** :orange[orange text] :blue-background[highlight text]:cherry_blossom:''')
+#st.markdown('''
+            #**REORDER** :orange[orange text] :blue-background[highlight text]:cherry_blossom:''')

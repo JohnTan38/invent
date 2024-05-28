@@ -51,7 +51,7 @@ if dataUpload is None:
 elif dataUpload is not None:
         data = pd.read_excel(dataUpload, skiprows=[0], engine='openpyxl')
         data = data.dropna(axis=1, how='all')
-        data_new = add_used_2(data)
+        data_new = add_used_2(data).reset_index(drop=True)
         if st.button('Lets get started'):
                 
             st.dataframe(data_new)
